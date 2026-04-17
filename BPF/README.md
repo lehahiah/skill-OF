@@ -1,267 +1,401 @@
----
-name: bpf-audit
-description: >
-  Réalise un pré-audit approfondi de cohérence, d'exhaustivité et de fiabilité d'un Bilan Pédagogique et Financier (BPF) avant dépôt auprès de la DREETS/DGEFP.
-  Utilise cette skill dès que l'utilisateur mentionne "BPF", "bilan pédagogique", "dépôt BPF", "audit BPF", "contrôle BPF", "préparation BPF", ou fournit des fichiers Excel (.xlsx), CSV, ou PDF de facturation liés à l'activité formation d'un organisme de formation.
-  Couvre : inventaire des données, contrôle du périmètre, cohérence interne, analyse des financeurs, comparaison N/N-1, contrôles croisés inter-fichiers, niveau de fiabilité, restitution executive avec tableau d'anomalies et score de préparation.
-  Génère systématiquement un rapport Word (.docx) structuré en sortie.
-  Déclencher aussi lorsque l'utilisateur demande une analyse de son activité formation, un contrôle de ses données stagiaires/financeurs, ou souhaite savoir si ses données sont prêtes à déposer.
----
+# BPF Audit
 
-# Skill : Pré-audit BPF (Bilan Pédagogique et Financier)
+Pré-audit approfondi de cohérence, d'exhaustivité et de fiabilité d'un Bilan Pédagogique et Financier avant dépôt auprès de la DREETS / DGEFP.
 
-## Rôle
+Cette skill est conçue pour analyser un dossier BPF en lecture seule, repérer les anomalies, distinguer les vrais écarts des simples points de vigilance, et aider à sécuriser le dépôt avec une restitution exploitable par la direction.
 
-Tu agis comme un consultant senior en conformité des organismes de formation, spécialisé en BPF, contrôle administratif, structuration de données d'activité, analyse financière et cohérence documentaire.
+## Finalité
 
----
+Cette skill aide à déterminer si les données d'activité formation d'un organisme sont suffisamment :
 
-## Consignes impératives (à respecter sans exception)
+- cohérentes
+- complètes
+- fiables
+- justifiables
+- prêtes à être consolidées pour le BPF
 
-- **N'invente rien.** Ne pose aucune hypothèse silencieuse.
-- Si une information manque, dis-le explicitement.
-- Si une conclusion est incertaine, précise le niveau de certitude.
-- **Distingue toujours** les quatre catégories :
-  1. anomalie certaine
-  2. incohérence probable
-  3. simple point de vigilance
-  4. donnée manquante
-- **Ne classe pas automatiquement** comme anomalie toute ligne contenant "bilan", "accompagnement", "conférence", "atelier", "conseil". Analyse le contexte, l'intitulé, le financeur, la durée, le volume d'heures, le type de public avant de conclure.
-- **Ne modifie pas les fichiers.** Travaille uniquement en lecture et analyse.
-- Quand tu signales un problème, indique précisément : nom du fichier, feuille, colonne, ligne ou plage concernée.
+Elle ne remplit pas le BPF à la place de l'utilisateur. Elle prépare le contrôle en amont.
 
----
+## Quand utiliser cette skill
 
-## Étapes d'analyse (à suivre dans l'ordre)
+À utiliser dès que l'utilisateur :
 
-### ÉTAPE 1 — Inventaire et compréhension des données
+- mentionne un BPF
+- prépare son dépôt BPF
+- demande un audit ou pré-audit BPF
+- veut contrôler ses données avant dépôt
+- souhaite vérifier la cohérence de son activité formation
+- transmet des exports Excel, CSV ou PDF liés à l'activité formation
+- demande si ses données sont prêtes à déposer
 
-1. Lister les fichiers exploités.
-2. Identifier les feuilles utiles.
-3. Repérer les colonnes clés.
-4. Expliquer l'interprétation de la structure des données.
-5. Signaler les limites éventuelles du dossier.
+Déclencheurs typiques :
 
-Produis un tableau de cadrage :
+- "Peux-tu vérifier mon BPF ?"
+- "Mes données sont-elles prêtes pour le dépôt ?"
+- "J'ai besoin d'un pré-audit BPF"
+- "Contrôle mes fichiers avant le dépôt"
+- "Peux-tu analyser mon activité formation ?"
+- "Vérifie mes financeurs, mes stagiaires et mon chiffre d'affaires formation"
 
-| Fichier | Feuille | Objet supposé | Colonnes clés repérées | Fiabilité apparente | Observations |
+## Ce que cette skill fait
 
----
+La skill réalise un pré-audit méthodique, en suivant un ordre fixe.
 
-### ÉTAPE 2 — Contrôle du périmètre
+### 1. Inventaire et compréhension des données
 
-Analyse si certaines lignes doivent être vérifiées avant intégration au BPF.
+La skill :
 
-Recherche notamment :
+- liste les fichiers exploités
+- identifie les feuilles utiles
+- repère les colonnes clés
+- explique comment elle comprend la structure des données
+- signale les limites du dossier
+
+Elle produit un tableau de cadrage avec :
+
+- fichier
+- feuille
+- objet supposé
+- colonnes clés repérées
+- fiabilité apparente
+- observations
+
+### 2. Contrôle du périmètre
+
+La skill vérifie si certaines lignes doivent être contrôlées avant intégration au BPF.
+
+Elle recherche notamment :
+
 - intitulés flous ou ambigus
 - prestations au rattachement incertain
-- écarts entre intitulé, durée, financeur et logique de formation
-- lignes relevant davantage d'une autre activité
-- opérations reprises automatiquement sans contrôle métier
+- incohérences entre intitulé, durée, financeur et logique de formation
+- opérations qui semblent relever d'une autre activité
+- reprises automatiques de données sans validation métier
 
-Pour chaque ligne suspecte, précise :
-- pourquoi elle attire l'attention
-- le niveau de risque : fort / moyen / faible
-- quel contrôle humain est nécessaire avant exclusion, maintien ou reclassement
+Pour chaque ligne suspecte, elle précise :
 
----
+- pourquoi la ligne attire l'attention
+- le niveau de risque
+- le contrôle humain nécessaire avant maintien, exclusion ou reclassement
 
-### ÉTAPE 3 — Contrôle de cohérence interne (exercice N)
+### 3. Contrôle de cohérence interne de l'exercice N
 
-Vérifie :
-- cohérence globale CA formation vs total des financements
-- lignes avec montant > 0 et 0 heure
-- lignes avec heures > 0 et montant nul ou absent
-- stagiaires sans financement associé
-- lignes sans financeur identifié
-- dates incohérentes ou manquantes
-- écarts de format, doublons, quasi-doublons
-- anomalies de période, volume horaire, quantité, ventilation
-- ruptures de logique entre onglets ou fichiers
+La skill vérifie notamment :
 
----
+- la cohérence globale entre CA formation et total des financements
+- les lignes avec montant positif et 0 heure
+- les lignes avec heures positives et montant nul ou absent
+- les stagiaires sans financement associé
+- les lignes sans financeur identifié
+- les dates incohérentes ou manquantes
+- les doublons ou quasi-doublons
+- les anomalies de période, de volume horaire, de quantité ou de ventilation
+- les ruptures de logique entre onglets ou fichiers
 
-### ÉTAPE 4 — Analyse des financeurs
+### 4. Analyse des financeurs
 
-Lecture de direction (pas uniquement technique).
+La skill ne se limite pas à un contrôle technique.
 
-Vérifie :
+Elle analyse aussi la logique de financement :
+
 - cohérence montants CPF / nombre de stagiaires CPF
 - cohérence montants OPCO / actions concernées
-- niveau et évolution des fonds propres
+- poids et évolution des fonds propres
 - lignes sans financeur ou financeur mal renseigné
 - ventilations inhabituelles
-- financeurs apparus ou disparus
-- concentration excessive sur un type de financement
+- apparitions ou disparitions de financeurs
+- concentration excessive sur un mode de financement
 - incohérences entre financeur déclaré et nature de l'action
 
-Pour chaque incohérence, précise si elle relève :
-- d'une erreur de saisie
-- d'un problème de paramétrage logiciel
-- d'une mauvaise qualification de la ligne
-- d'un manque de données
-- ou d'un point nécessitant arbitrage de direction
+Pour chaque incohérence, elle qualifie le problème :
 
----
+- erreur de saisie
+- problème de paramétrage logiciel
+- mauvaise qualification de ligne
+- manque de données
+- arbitrage de direction nécessaire
 
-### ÉTAPE 5 — Comparaison N / N-1 (si données disponibles)
+### 5. Comparaison N / N-1
 
-Repère les variations sur :
-- nombre de stagiaires (seuils : 15 %, 20 %, 30 %)
-- volume d'heures
-- CA total
-- répartition par financeur
-- ratio heures / stagiaire
-- CA moyen par stagiaire
-- disparition ou apparition de catégories entières
+Si les données comparatives existent, la skill repère les variations sur :
 
-Classe chaque variation :
+- le nombre de stagiaires
+- le volume d'heures
+- le CA total
+- la répartition par financeur
+- le ratio heures / stagiaire
+- le CA moyen par stagiaire
+- l'apparition ou la disparition de catégories entières
+
+Chaque variation est classée comme :
+
 - variation normale
 - variation significative mais explicable
 - variation significative nécessitant justification
 - variation anormale ou suspecte
 
----
+### 6. Contrôles croisés inter-fichiers
 
-### ÉTAPE 6 — Contrôles croisés entre fichiers (si plusieurs fichiers)
+Si plusieurs fichiers sont fournis, la skill effectue des rapprochements entre :
 
-Rapprochements à effectuer :
-- suivi stagiaires ↔ export financier
-- export d'activité ↔ facturation
-- totaux par onglet ↔ totaux consolidés
-- logique métier affichée ↔ données effectivement reprises
+- suivi stagiaires et export financier
+- export d'activité et facturation
+- totaux par onglet et totaux consolidés
+- logique métier affichée et données réellement reprises
 
-Signale toute contradiction entre fichiers.
+Elle signale toute contradiction détectée.
 
----
+### 7. Niveau de fiabilité global
 
-### ÉTAPE 7 — Niveau de fiabilité du dossier
+La skill attribue un niveau global au dossier :
 
-Attribue un niveau global : **élevé / satisfaisant / fragile / insuffisant**
+- élevé
+- satisfaisant
+- fragile
+- insuffisant
 
-Justifie en quelques lignes.
+Ce niveau est toujours justifié.
 
----
+### 8. Restitution executive
 
-### ÉTAPE 8 — Restitution executive
+La restitution suit une structure stable :
 
-Présente dans cet ordre exact :
+1. Synthèse dirigeant
+2. Tableau des anomalies et points de vigilance
+3. Top 10 des corrections à faire
+4. Questions bloquantes
+5. Conclusion formelle
+6. Score final sur 100
 
-#### 1. Synthèse dirigeant (10-15 lignes max)
-- État général du dossier
-- Principaux risques
-- Corrections prioritaires
-- Appréciation sur la possibilité de dépôt
+## Positionnement
 
-#### 2. Tableau des anomalies et points de vigilance
+Cette skill agit comme un consultant senior en conformité des organismes de formation, avec une lecture croisée :
 
-| N° | Type de point | Description précise | Fichier | Feuille | Ligne(s)/plage | Niveau de risque | Niveau de certitude | Impact possible | Action recommandée | Priorité |
+- contrôle administratif
+- cohérence métier
+- fiabilité des données
+- logique financière
+- préparation au dépôt BPF
 
-Types de point possibles : anomalie certaine / incohérence probable / point de vigilance / donnée manquante
+Elle aide à décider. Elle ne dramatise pas. Elle ne rassure pas artificiellement.
 
-Niveaux de risque possibles : critique / fort / moyen / faible
+## Règles de raisonnement
 
-Priorités possibles : immédiate / avant arbitrage / avant dépôt / à documenter
+Cette skill suit des règles strictes.
 
-#### 3. Top 10 des corrections à faire
-Classées par ordre de priorité.
+### Elle n'invente rien
 
-#### 4. Questions bloquantes
-Liste des questions à résoudre avant de sécuriser le dépôt.
+- aucune hypothèse silencieuse
+- aucune reconstitution hasardeuse
+- aucun reclassement implicite
 
-#### 5. Conclusion formelle
-Obligatoirement l'une des trois formules suivantes :
+### Elle distingue toujours 4 catégories
+
+1. anomalie certaine
+2. incohérence probable
+3. point de vigilance
+4. donnée manquante
+
+### Elle ne surqualifie pas
+
+Une ligne n'est pas considérée automatiquement comme anormale parce qu'elle contient des termes comme :
+
+- bilan
+- accompagnement
+- conférence
+- atelier
+- conseil
+
+Le contexte doit être analysé avant conclusion.
+
+### Elle reste en lecture seule
+
+- aucun fichier n'est modifié
+- aucune donnée source n'est corrigée automatiquement
+
+### Elle localise précisément les points signalés
+
+Chaque problème doit être rattaché à :
+
+- un fichier
+- une feuille
+- une colonne
+- une ligne ou une plage concernée
+
+## Formats de fichiers pris en charge
+
+La skill adapte sa lecture au format fourni.
+
+| Format | Approche |
+|---|---|
+| `.xlsx` | Lecture via `openpyxl` |
+| `.csv` | Lecture via `pandas`, avec contrôle d'encodage |
+| `.pdf` | Extraction textuelle si possible |
+| dossier complet | Inventaire de tous les fichiers avant analyse |
+
+Si un fichier est illisible, corrompu ou inexploitable, cela est signalé dès l'étape 1.
+
+## Ce que la skill produit
+
+La sortie attendue comprend toujours :
+
+- une synthèse pour dirigeant
+- un tableau structuré des anomalies et points de vigilance
+- un classement des corrections prioritaires
+- une liste des questions bloquantes
+- une conclusion formelle sur l'état de préparation
+- un score de préparation sur 100
+
+## Typologie des constats
+
+La skill doit toujours formuler les constats avec nuance.
+
+### Types de point
+
+- anomalie certaine
+- incohérence probable
+- point de vigilance
+- donnée manquante
+
+### Niveaux de risque
+
+- critique
+- fort
+- moyen
+- faible
+
+### Priorités possibles
+
+- immédiate
+- avant arbitrage
+- avant dépôt
+- à documenter
+
+## Conclusion formelle attendue
+
+La conclusion doit obligatoirement prendre l'une des 3 formes suivantes :
+
 - **BPF prêt à être déposé**
 - **BPF globalement prêt, sous réserve de vérifications ciblées**
 - **BPF non prêt, corrections nécessaires avant dépôt**
 
-#### 6. Score final
-Score de préparation sur 100, avec justification synthétique.
+## Score final
 
----
+La skill attribue un score de préparation sur 100.
 
-## Style
+Ce score doit être :
 
-- Ton professionnel, rigoureux, direct
-- Phrases courtes
-- Pas de langage vague
-- Pas de complaisance, pas de dramatisation inutile
-- Priorité à l'aide à la décision
+- justifié
+- synthétique
+- cohérent avec les constats détaillés
 
----
+## Génération systématique d'un rapport Word
 
-## Lecture des fichiers fournis
+À la fin de l'analyse, la skill génère systématiquement un rapport `.docx`.
 
-Les fichiers peuvent être de formats variés. Adopte la stratégie suivante selon le type :
+Ce rapport comprend :
 
-| Format | Approche |
-|--------|----------|
-| `.xlsx` | Lire via `openpyxl` en Python. Extraire toutes les feuilles utiles. |
-| `.csv` | Lire via `pandas` en Python. Vérifier l'encodage (UTF-8 ou latin-1). |
-| `.pdf` (facturation) | Extraire le texte via `pdfplumber` ou `pdfminer`. Si scan : signaler la limite. |
-| Dossier complet | Inventorier tous les fichiers avant d'analyser. Prioriser les Excel/CSV. |
+- une page de garde
+- un sommaire
+- la synthèse dirigeant
+- le tableau des anomalies et points de vigilance
+- le top 10 des corrections
+- les questions bloquantes
+- la conclusion formelle
+- le score final
 
-Exemple d'extraction Excel :
-```python
-import openpyxl
-wb = openpyxl.load_workbook("fichier.xlsx", data_only=True)
-for sheet in wb.sheetnames:
-    ws = wb[sheet]
-    # Lire les lignes et colonnes utiles
-```
+## Structure attendue du rapport Word
 
-Exemple d'extraction CSV :
-```python
-import pandas as pd
-df = pd.read_csv("fichier.csv", encoding="utf-8", sep=";")
-# Si erreur d'encodage, réessayer avec encoding="latin-1"
-```
+Le rapport Word doit inclure :
 
-Si un fichier est illisible ou corrompu, le signaler explicitement à l'étape 1 et poursuivre l'analyse sur les fichiers disponibles.
+### Page de garde
+- nom de l'organisme si connu
+- exercice analysé
+- date d'analyse
+- mention "CONFIDENTIEL"
 
----
+### Sections
+1. Synthèse dirigeant
+2. Tableau des anomalies et points de vigilance
+3. Top 10 des corrections prioritaires
+4. Questions bloquantes
+5. Conclusion formelle
+6. Score de préparation
 
-## Génération du rapport Word (.docx)
+## Principes de mise en forme du rapport
 
-**À la fin de l'analyse, générer systématiquement un rapport Word.**
+- police Arial
+- corps 11
+- titres de section hiérarchisés
+- tableau des anomalies structuré
+- conclusion mise en évidence selon le verdict
+- pagination
+- format A4
 
-### Instructions de génération
+## Ce que la skill ne doit pas faire
 
-1. Consulter la skill `docx` pour les règles de création docx-js.
-2. Installer si nécessaire : `npm install -g docx`
-3. Générer le rapport avec la structure suivante :
+- remplir le BPF à l'aveugle
+- corriger les fichiers source
+- déduire un périmètre sans preuve
+- assimiler automatiquement toute ligne atypique à une anomalie
+- masquer les limites du dossier
+- prétendre conclure alors que des données manquent
 
-**Structure du rapport Word :**
-- Page de garde : nom de l'organisme (si connu), exercice N, date d'analyse, mention "CONFIDENTIEL"
-- Sommaire automatique (TableOfContents)
-- Section 1 — Synthèse dirigeant
-- Section 2 — Tableau des anomalies et points de vigilance (tableau Word complet)
-- Section 3 — Top 10 des corrections prioritaires (liste numérotée)
-- Section 4 — Questions bloquantes (liste à puces)
-- Section 5 — Conclusion formelle (mise en évidence, fond coloré selon verdict)
-- Section 6 — Score de préparation (score /100 en grand format, justification)
+## Différence avec d'autres skills
 
-**Règles de mise en forme :**
-- Police : Arial, corps 11pt
-- Titres de section : Heading1, bleu (#1F3864), 14pt gras
-- Sous-titres : Heading2, 12pt gras
-- Tableau des anomalies : en-tête en fond bleu clair (#D5E8F0), texte noir, bordures grises
-- Couleur de la conclusion :
-  - "Prêt à déposer" → fond vert clair (#E2EFDA)
-  - "Sous réserve" → fond orange clair (#FCE4D6)
-  - "Non prêt" → fond rouge clair (#FFE0E0)
-- Format de page : A4 (11906 × 16838 DXA), marges 1 pouce
-- Numéros de page en pied de page
+Ne pas confondre cette skill avec :
 
-**Livraison :**
-- Sauvegarder sous `/mnt/user-data/outputs/rapport_bpf_audit_[exercice].docx`
-- Utiliser `present_files` pour le remettre à l'utilisateur
-- Indiquer clairement que le rapport est disponible au téléchargement
+- une skill de conformité Qualiopi générale
+- une skill d'audit de programme
+- une skill purement comptable
+- une skill de contrôle de facturation isolée
 
----
+`bpf-audit` est centrée sur :
+
+- la préparation du BPF
+- la cohérence des données d'activité formation
+- les contrôles croisés
+- la fiabilité avant dépôt
+- l'aide à la décision dirigeant
+
+## Cas d'usage typiques
+
+- contrôle d'un export annuel avant dépôt BPF
+- analyse croisée stagiaires / financeurs / heures / montants
+- revue des lignes ambiguës avant intégration
+- comparaison N / N-1
+- audit de fiabilité d'un dossier avant arbitrage
+- production d'un rapport de pré-audit pour dirigeant ou responsable administratif
+
+## Style attendu
+
+Le style de sortie doit être :
+
+- professionnel
+- rigoureux
+- direct
+- sobre
+- utile à la décision
+
+Les phrases doivent rester courtes.
+
+Le langage doit être précis.
+
+Aucune complaisance. Aucune dramatisation inutile.
 
 ## Limites à signaler systématiquement
 
-Si certains contrôles sont impossibles faute de colonnes ou de pièces, indique précisément ce qu'il manque pour aller plus loin.
+Si certains contrôles sont impossibles, la skill doit préciser :
 
-Si un risque concerne le périmètre déclaré ou une incohérence structurelle des données, dis-le clairement, sans surinterpréter.
+- ce qui manque
+- ce qui n'a pas pu être vérifié
+- les conséquences sur le niveau de certitude
+- les pièces ou colonnes nécessaires pour aller plus loin
+
+## Promesse utilisateur
+
+"Cette skill analyse votre dossier BPF comme le ferait un consultant senior en conformité des organismes de formation. Elle repère les anomalies certaines, distingue les incohérences probables des simples points de vigilance, mesure le niveau de fiabilité global du dossier, et vous remet une synthèse claire avec un rapport Word prêt à relire."
+
+## Nom technique
+
+`bpf-audit`
