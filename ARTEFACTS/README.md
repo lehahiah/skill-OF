@@ -1,143 +1,198 @@
 # ARTEFACTS
 
-Ce dossier contient des artefacts au format HTML ou TSX
+Ce dossier contient des artefacts conçus pour les organismes de formation.
 
-Ces fichiers peuvent etre utilises de deux manieres :
-- dans Claude, pour lecture, adaptation ou modification
-- en local, dans un navigateur, pour tester ou reutiliser l'interface
+Ils peuvent servir d'outils d'aide a l'analyse, a la redaction, a la pedagogie ou a l'appropriation de certains cadres conventionnels et reglementaires.
 
-## A quoi servent ces artefacts
+## Artefacts actuellement disponibles
 
-Les artefacts proposes ici sont pensés pour les organismes de formation et leurs besoins concrets :
-- structuration d'informations
-- aide a l'analyse
-- interfaces simples
-- outils visuels ou interactifs
-- prototypes fonctionnels
+### Positionnement CCN-IDCC1516.tsx
+Outil de positionnement salarial par rapport aux marches de la convention collective des organismes de formation.
 
-Selon les cas, un artefact peut etre :
-- totalement autonome
-- utilisable dans Claude sans configuration technique supplementaire
-- ou necessiter une integration API pour fonctionner hors Claude
+Cet artefact permet de travailler sur le classement ou le positionnement d'un emploi au regard de la CCN IDCC 1516, dans une logique pedagogique, preparatoire ou d'aide a l'analyse.
 
-## Option 1 - Utiliser un artefact dans Claude
+### Prose.html
+Assistant d'ecriture polyvalent.
 
-Vous pouvez importer un fichier `.html` dans une conversation Claude ou dans un projet.
+Cet artefact peut etre utilise pour :
+- l'aide a la redaction
+- la reformulation
+- l'assistance podcast
+- la reformulation juridique
+- la reformulation pedagogique
+
+Il peut servir de base de travail pour produire un texte plus clair, plus professionnel ou mieux adapte a un contexte donne.
+
+### bloom-smart-app.tsx
+Outil d'analyse et de reecriture d'objectifs pedagogiques.
+
+Cet artefact aide a retravailler des objectifs de formation, notamment pour les rendre plus clairs, plus operationnels et mieux articules avec une logique de type Bloom / SMART.
+
+## Formats presents dans ce dossier
+
+Ce dossier contient deux types de formats :
+
+- des fichiers `.html`
+- des fichiers `.tsx`
+
+Ils ne s'utilisent pas exactement de la meme facon.
+
+## Utiliser un artefact dans Claude
+
+Vous pouvez importer un artefact dans une conversation Claude pour demander a Claude de :
+- expliquer le fonctionnement du fichier
+- modifier son contenu
+- adapter son interface
+- corriger le code
+- transformer l'outil pour votre propre usage
 
 ### Etapes
 
 - ouvrez une conversation Claude
 - cliquez sur `+`
-- choisissez l'ajout de fichier
-- importez le fichier `.html`
-- demandez ensuite a Claude ce que vous voulez faire
+- ajoutez le fichier souhaite
+- importez le fichier `.html` ou `.tsx`
+- donnez ensuite votre demande a Claude
 
-Exemples :
-- "explique moi a quoi sert ce fichier"
-- "modifie le texte de cette interface pour un organisme de formation"
-- "adapte ce prototype pour une check-list Qualiopi"
-- "corrige les erreurs HTML, CSS ou JavaScript"
+### Exemples de demandes
 
-### Ce que Claude peut faire
+Pour `Positionnement CCN-IDCC1516.tsx` :
+- "adapte ce quiz pour un usage RH en organisme de formation"
+- "simplifie les questions pour un premier niveau de sensibilisation"
+- "ajoute une introduction pedagogique sur la CCN IDCC 1516"
 
-Une fois le fichier importé, Claude peut notamment :
-- lire sa structure
-- analyser le code
-- proposer des corrections
-- modifier le contenu
-- adapter le design
-- generer une nouvelle version
+Pour `Prose.html` :
+- "adapte cet assistant d'ecriture a un usage juridique"
+- "cree une version orientee reformulation LinkedIn"
+- "ajoute un mode podcast avec un ton plus oral"
 
-### Point important
+Pour `bloom-smart-app.tsx` :
+- "ajoute une aide pour detecter les verbes trop flous"
+- "cree une version specialisee organisme de formation"
+- "propose une reecriture plus operationnelle des objectifs"
 
-Importer un fichier HTML dans Claude permet surtout a Claude de travailler sur son contenu.
+## Utiliser un artefact HTML en local
 
-Cela ne remplace pas l'ouverture du fichier dans un navigateur si vous voulez tester son comportement interactif réel.
+Les fichiers `.html` peuvent generalement etre ouverts directement dans un navigateur.
 
-## Option 2 - Utiliser un artefact en local
-
-Vous pouvez aussi télécharger le fichier puis l'ouvrir directement sur votre ordinateur.
+### Exemple
+`Prose.html`
 
 ### Etapes
+- telechargez le fichier
+- ouvrez-le dans votre navigateur
+- testez l'interface
+- adaptez ensuite le contenu si besoin
 
-- téléchargez le fichier `.html`
-- double-cliquez dessus ou ouvrez-le dans votre navigateur
-- testez son affichage et son fonctionnement
+Ce mode convient bien pour un outil autonome ou un prototype simple.
 
-Cette option est la plus simple si l'artefact est autonome.
+## Utiliser un artefact TSX en local
 
-## Faut-il ajouter une clé API ?
+Les fichiers `.tsx` sont des composants React en TypeScript.
 
-Pas dans tous les cas.
+Ils ne sont pas faits pour etre ouverts directement par double-clic comme un fichier HTML.
 
-### Cas 1 - Pas de clé API nécessaire
+### Exemples
+- `Positionnement CCN-IDCC1516.tsx`
+- `bloom-smart-app.tsx`
 
-Aucune clé API n'est nécessaire si :
-- vous utilisez le fichier comme support de travail dans Claude
-- ou si l'artefact est utilisé nativement dans l'environnement Claude prévu a cet effet
+### Pour les utiliser en local
+Il faut en general :
+- un projet React
+- un environnement TypeScript
+- un outil de developpement adapte, par exemple Next.js, Vite ou un projet React equivalent
 
-Dans ce cas, l'utilisateur fonctionne avec son propre compte Claude.
+### Usage recommande
+Si vous ne souhaitez pas manipuler un projet React vous-meme :
+- importez d'abord le fichier dans Claude
+- demandez a Claude de vous l'expliquer
+- demandez ensuite une adaptation
+- ou demandez une conversion en version HTML si cela est pertinent
 
-### Cas 2 - Clé API nécessaire
+## Faut-il ajouter une API ?
 
-Une clé API devient nécessaire si vous voulez faire fonctionner l'artefact en dehors de Claude avec de vrais appels a un modele.
+Pas systematiquement.
 
-Exemples :
-- bouton "analyser" relié a Claude
-- formulaire qui envoie une requete au modele
-- assistant conversationnel intégré a une page web
-- generation automatique de contenu depuis une interface HTML
+### Aucun ajout d'API necessaire
+Vous n'avez pas besoin d'ajouter d'API si :
+- vous utilisez simplement le fichier dans Claude comme base de travail
+- vous l'importez pour le faire lire, corriger ou adapter
+- l'artefact reste dans un usage local sans appel a un service externe
 
-## Si vous utilisez une API hors Claude
+### Ajout d'API possible ou necessaire
+Une API peut devenir necessaire si vous voulez utiliser l'artefact hors Claude avec des fonctions d'assistance IA actives.
 
-Dans ce cas, il faut ajouter une couche serveur.
+C'est surtout le cas pour un outil comme `Prose.html` si vous souhaitez qu'il envoie de vraies requetes a un modele externe pour :
+- reformuler automatiquement
+- generer un texte
+- produire une version podcast
+- proposer une reecriture juridique ou pedagogique
 
-### Recommandation
+Dans ce cas, il faut en general :
+- connecter l'artefact a un service IA
+- utiliser une cle API ou une architecture serveur adaptee
+- prevoir une integration technique securisee
 
-N'insérez jamais une clé API directement en clair dans le fichier HTML ou dans un script JavaScript exécuté coté navigateur.
+## Important - securite
 
-Utilisez plutot :
+N'inserez jamais une cle API en clair directement dans un fichier HTML, TSX ou JavaScript cote navigateur.
+
+Pour un usage externe, privilegiez :
 - un backend
 - une variable d'environnement
-- un proxy serveur sécurisé
+- un proxy securise
 
-## Limites a connaitre
+## Conseils d'usage selon les fichiers
 
-- un fichier HTML importé dans Claude n'est pas "installé" comme une application autonome
-- pour tester réellement une interface, ouvrez le fichier dans un navigateur
-- certains artefacts peuvent nécessiter des scripts complémentaires
-- certains artefacts peuvent dépendre d'un service externe ou d'une autorisation spécifique
+### Positionnement CCN-IDCC1516.tsx
+A utiliser pour :
+- une premiere approche du positionnement
+- un support de sensibilisation RH
+- un outil preparatoire avant analyse approfondie
 
-## Usage recommandé
+Point de vigilance :
+cet outil ne remplace pas l'analyse complete d'un poste, des missions reelles, du degre d'autonomie, de technicite et des criteres conventionnels applicables.
 
-Pour un usage simple :
-- ouvrez le fichier dans Claude pour le faire adapter
-- puis testez la version finale dans votre navigateur
+### Prose.html
+A utiliser pour :
+- gagner du temps en redaction
+- reformuler un texte selon plusieurs registres
+- travailler une trame ecrite, juridique, pedagogique ou orale
 
-Pour un usage avancé :
-- utilisez l'HTML comme base d'interface
-- reliez ensuite cette interface a votre propre architecture technique
+Point de vigilance :
+les textes generes ou reformules doivent toujours etre relus, surtout en contexte juridique, contractuel, RH ou reglementaire.
 
-## Public concerné
+### bloom-smart-app.tsx
+A utiliser pour :
+- analyser la qualite d'un objectif pedagogique
+- rendre un objectif plus clair et observable
+- aider a la reecriture dans un cadre formation
+
+Point de vigilance :
+un objectif pedagogique pertinent depend aussi du contexte, du public, du niveau vise, des modalites d'evaluation et du dispositif de formation.
+
+## Public concerne
 
 Ces artefacts peuvent etre utiles a :
 - des organismes de formation
 - des CFA
-- des responsables qualité
-- des équipes administratives
-- des directions
+- des responsables qualite
+- des responsables pedagogiques
+- des formateurs
+- des equipes administratives
 - des consultants ou prestataires du secteur
 
 ## Avertissement
 
-Ces artefacts sont fournis comme base de travail, prototype ou support opérationnel.
+Ces artefacts sont fournis comme supports de travail, prototypes ou outils d'appui.
 
-Ils doivent etre testés, relus et adaptés avant utilisation en situation réelle, notamment si :
-- des données sensibles sont traitées
-- un usage réglementaire est envisagé
-- l'outil influence une décision administrative, qualité ou juridique
+Ils doivent etre testes, relus et adaptes avant toute utilisation en situation reelle, en particulier lorsqu'ils portent sur :
+- des enjeux juridiques
+- des enjeux conventionnels
+- des decisions RH
+- des contenus pedagogiques engageant la conformite ou la qualite
 
 ## Formaswift
 
-Ces artefacts s'inscrivent dans la démarche de Formaswift :
-mettre l'IA au service d'usages concrets, structurés et utiles pour les organismes de formation, sans perdre de vue les exigences de fiabilité, de méthode et de validation humaine.
+Ces artefacts s'inscrivent dans la demarche de Formaswift :
+mettre l'IA au service d'usages concrets, utiles et structures pour les organismes de formation, avec une attention particuliere portee a la fiabilite, a la pedagogie et a la validation humaine.
