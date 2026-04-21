@@ -10,6 +10,7 @@ Ce dossier contient une skill RGPD dédiée aux organismes de formation, CFA et 
 - `references/aipd.md` - méthode de qualification et de lancement d'une AIPD ;
 - `references/outils-numeriques.md` - méthode d'audit des outils et transferts ;
 - `references/cas-usages-prompts-rgpd-of.md` - bibliothèque de formulations à reconnaître ;
+- `references/durees-conservation-of.md` - tableau de référence des durées de conservation pour OF, avec distinction entre durée légale, recommandée, probatoire et à documenter ;
 - autres fichiers de référence à enrichir ou consolider.
 
 ## Logique de la skill
@@ -33,6 +34,5 @@ Cette version a été revue pour corriger plusieurs risques fréquents :
 
 Une seconde passe peut encore être menée sur :
 - les modèles de réponses aux droits des personnes ;
-- les durées de conservation par type de document OF ;
 - les tableaux comparatifs par financeur ;
 - les modèles de clauses et procédures prêts à l'emploi.
