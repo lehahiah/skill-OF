@@ -1,0 +1,324 @@
+---
+
+# 📘 Manuel de Procédure RGPD
+
+## Gestion des Demandes d’Exercice des Droits & Cycle de Vie des Données
+
+---
+
+## 1. Introduction et cadre stratégique
+
+Le respect des droits des personnes constitue un pilier fondamental de la conformité au RGPD. Il représente :
+
+* un **enjeu de confiance numérique**
+* un **levier de différenciation stratégique**
+* une **protection contre les risques juridiques**
+
+### ⚖️ Contexte réglementaire
+
+L’autorité de contrôle française, la CNIL, a renforcé ses contrôles via une **procédure simplifiée**.
+
+* 11 sanctions prononcées entre juin et septembre 2024
+* Montant total : 129 000 €
+* Plafond : 20 000 € par manquement
+* Procédure rapide et non publique
+
+👉 **Implication** : nécessité d’une **réactivité opérationnelle immédiate**.
+
+---
+
+## 2. Réception et enregistrement des demandes
+
+### 📥 Modalités de réception
+
+* **Voie électronique** (email / formulaire dédié)
+* **Courrier postal** (recommandé conseillé)
+* **Dépôt physique** (remise obligatoire d’un accusé de réception)
+
+### 📊 Enregistrement obligatoire
+
+Chaque demande doit être tracée avec :
+
+* Date de réception (point de départ du délai légal)
+* Canal utilisé
+* Type de droit exercé
+
+### 💡 Bonne pratique
+
+En cas de demande volumineuse :
+
+> Demander immédiatement des précisions sur :
+
+* les traitements concernés
+* les catégories de données
+
+---
+
+## 3. Qualification et vérification de l’identité
+
+### 🎯 Principe
+
+Mettre en œuvre une vérification **proportionnée** :
+
+* éviter l’usurpation d’identité
+* ne pas créer de barrières excessives
+
+### 🔐 Principe du "doute raisonnable"
+
+La pièce d’identité **n’est pas systématique**.
+
+#### ✔️ Justificatifs acceptables
+
+* Authentification via espace client / FranceConnect
+* Numéro client ou information contractuelle
+* Copie de pièce d’identité (si doute réel)
+
+#### ❌ Pratiques interdites
+
+* Demande d’identité pour une simple désinscription
+* Exigence disproportionnée
+* Collecte de documents non pertinents
+
+### 👥 Gestion des mandats
+
+Vérifier :
+
+* Identité du mandataire
+* Identité du mandant
+* Objet explicite du mandat
+
+### ⏸️ Suspension des délais
+
+Le délai est suspendu en cas de demande de complément.
+
+---
+
+## 4. Recevabilité et délais légaux
+
+### ⏱️ Délais standards
+
+* **1 mois** (principe général)
+* **+ 2 mois** (si complexité, avec justification)
+
+### 🏥 Cas particuliers
+
+* Données de santé :
+
+  * 8 jours
+  * délai minimum de réflexion : 48h
+  * 2 mois si données > 5 ans
+
+### 📭 Absence de données
+
+➡️ Réponse obligatoire sous 1 mois
+
+### 🚫 Refus et frais
+
+Refus possible si demande :
+
+* manifestement infondée
+* excessive ou répétitive
+
+👉 Possibilité de facturer des **frais raisonnables**
+
+---
+
+## 5. Exécution des droits
+
+### 📊 Matrice des droits
+
+| Base légale       | Accès | Rectification | Opposition  | Effacement | Portabilité |
+| ----------------- | ----- | ------------- | ----------- | ---------- | ----------- |
+| Consentement      | ✅     | ✅             | ❌ (retrait) | ✅          | ✅           |
+| Contrat           | ✅     | ✅             | ❌           | ✅          | ✅           |
+| Obligation légale | ✅     | ✅             | ❌           | ❌*         | ❌           |
+| Intérêt légitime  | ✅     | ✅             | ✅           | ✅          | ❌           |
+
+* sauf exceptions (illicéité ou inutilité)
+
+---
+
+### 🔎 Droit d’accès
+
+* Inclure :
+
+  * base active
+  * archivage intermédiaire
+* Format :
+
+  * lisible
+  * compréhensible (lexique si nécessaire)
+
+---
+
+### 🗑️ Droit à l’effacement
+
+* Supprimer :
+
+  * données non nécessaires
+* Conserver :
+
+  * obligations légales (ex : factures 10 ans)
+
+---
+
+### 🔄 Droit à la portabilité
+
+* Données concernées :
+
+  * fournies par la personne
+* Format :
+
+  * CSV / JSON
+
+---
+
+## 6. Protection des tiers et exceptions
+
+### ✔️ Checklist obligatoire
+
+* [ ] Anonymisation des tiers
+* [ ] Protection du secret des affaires
+* [ ] Respect de la propriété intellectuelle
+* [ ] Vérification des sources (actif + archive)
+
+### ⚠️ Limites au droit d’effacement
+
+* obligation légale
+* défense en justice
+* liberté d’expression
+
+---
+
+## 7. Réponse, sécurisation et archivage
+
+### 🔐 Sécurisation
+
+* Chiffrement des données sensibles
+* Code transmis via canal séparé
+* Preuve d’envoi (recommandé)
+
+---
+
+### 🗄️ Archivage
+
+#### 📁 Dossier de demande
+
+* Conservation : **5 ans**
+
+#### 💰 Données comptables
+
+* Archivage intermédiaire : **10 ans**
+* Accès restreint
+
+---
+
+### ⚖️ Recours
+
+Toute réponse de refus doit mentionner :
+
+* droit de saisir la CNIL
+* recours juridictionnel
+
+---
+
+# 📊 Cycle de vie des données
+
+---
+
+## 1. Définition
+
+Le **cycle de vie des données** correspond à :
+
+> l’ensemble des étapes de la collecte à la suppression ou conservation
+
+### 🎯 Principe clé
+
+➡️ **Minimisation des données**
+
+---
+
+## 2. Les 3 phases
+
+### 📂 1. Base active
+
+* Utilisation quotidienne
+* Accès direct
+* Objectif opérationnel
+
+👉 Analogie : classeur dans un bureau
+
+---
+
+### 🔒 2. Archivage intermédiaire
+
+* Conservation légale ou contentieuse
+* Accès restreint
+
+👉 Analogie : salle d’archives interne
+
+---
+
+### 🏛️ 3. Archivage définitif
+
+* Valeur historique
+* Conservation illimitée
+
+👉 Régi par le Code du patrimoine
+
+---
+
+## 3. Synthèse
+
+| Phase                   | Statut     | Accès        | Analogie            |
+| ----------------------- | ---------- | ------------ | ------------------- |
+| Base active             | En cours   | Quotidien    | Bureau              |
+| Archivage intermédiaire | Clos       | Restreint    | Archives internes   |
+| Archivage définitif     | Historique | Exceptionnel | Archives nationales |
+
+---
+
+## 4. Sécurité et droits
+
+### 🔐 Obligations
+
+* Sécurité (chiffrement, habilitations)
+* Traçabilité des accès
+* Protection continue
+
+### 👤 Droit d’accès
+
+* applicable à toutes les phases
+* délai : 1 mois (+2 si complexité)
+
+### 💰 Coût
+
+* 1ère copie gratuite
+* frais possibles si abus
+
+---
+
+## 5. Conclusion
+
+Le cycle de vie des données permet :
+
+* une **gestion maîtrisée et sécurisée**
+* le respect du principe de minimisation
+* la production de preuves en cas de contrôle
+
+👉 Il constitue un **pilier de conformité RGPD** et un facteur clé de confiance.
+
+---
+
+## ✅ Utilisation dans une “skill RGPD”
+
+Ce document est :
+
+* structuré pour un référentiel de compétences
+* exploitable en formation
+* aligné avec les exigences de conformité opérationnelle
+
+---
+
+* créer une **fiche mémo apprenant**
+* ou l’adapter au **format Qualiopi / référentiel de compétences**
