@@ -437,4 +437,5 @@ Sources prioritaires à citer ou à paraphraser quand nécessaire :
 - loi Informatique et Libertés ;
 - CNIL - bases légales, registre, AIPD, droits, violations, transferts hors UE ;
 - guide de lecture Qualiopi en vigueur ;
+- référence interne `references/durees-conservation-of.md` pour raisonner les durées OF sans les figer à tort ;
 - référentiel CNIL de certification des prestataires de formation à la protection des données, uniquement si l'utilisateur parle de formation RGPD certifiée.
